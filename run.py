@@ -1,4 +1,5 @@
 import csv
+from collections import Counter
 
 
 def get_user_data():
@@ -9,6 +10,7 @@ def get_user_data():
     The loop will repeatedly request data until it is valid.
     """
     gender = gender_analyse()
+    languages = common_language()
 
     print('*** Welcome to Love Coding Survey Data Analysis ***')
     print('Please enter one of the listed numbers to see the answer.\n')
@@ -30,7 +32,7 @@ def get_user_data():
             if data == "1":
                 print(gender)
             elif data == "2":
-                print("Answer 2")
+                print(languages)
             elif data == "3":
                 print("Answer 3")
             elif data == "0":
@@ -67,6 +69,35 @@ def gender_analyse():
     gender = f'Man: {man_percent}%\nWoman: {woman_percent}%'
 
     return gender
+
+
+def common_language():
+    """
+    Load in CSV file, open it, and read it.
+    Run a for loop to access "LanguageHaveWorkedWith" column
+    data and count languages. Run a for loop to see the five
+    most common languages developers currently working with
+    and calculate the percentage for each one of these languages.
+    """
+    with open('survey_results_public.csv') as file:
+        csv_reader = csv.DictReader(file)
+        total = 0
+
+        language_counter = Counter()
+
+        for line in csv_reader:
+            languages = line['LanguageHaveWorkedWith'].split(';')
+
+            language_counter.update(languages)
+
+            total += 1
+    output = ""
+    for key, value in language_counter.most_common(5):
+        language_percent = (value / total) * 100
+        language_percent = round(language_percent)
+        output = output + f'{key}: {language_percent}%\n'
+
+    return output
 
 
 get_user_data()
