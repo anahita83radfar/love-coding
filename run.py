@@ -12,6 +12,7 @@ def get_user_data():
     gender = gender_analyse()
     languages = common_language()
     developers = developer_types()
+    save_data(gender, languages, developers)
 
     print('*** Welcome to Love Coding Survey Data Analysis ***')
     print('Please enter one of the listed numbers to see the answer.\n')
@@ -133,6 +134,21 @@ def developer_types():
 
             output = output + "\n" + developers
     return output
+
+
+def save_data(gender, languages, developers):
+    """
+    Create a CSV file, open it, and write the results of data analysis on it.
+    """
+    with open("survey_results_analyse.csv", "w") as file:
+        gender = gender.replace("\n", "+")
+        languages = languages.replace("\n", "+")
+        developers = developers.replace("\n", "+")
+        csv_writer = csv.writer(file)
+        csv_writer.writerow(["id", "questione", "answer"])
+        csv_writer.writerow(["1", "gender", gender])
+        csv_writer.writerow(["2", "the common languages", languages])
+        csv_writer.writerow(["3", "the developer's types", developers])
 
 
 get_user_data()
