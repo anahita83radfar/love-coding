@@ -11,6 +11,7 @@ def get_user_data():
     """
     gender = gender_analyse()
     languages = common_language()
+    developers = developer_types()
 
     print('*** Welcome to Love Coding Survey Data Analysis ***')
     print('Please enter one of the listed numbers to see the answer.\n')
@@ -34,7 +35,7 @@ def get_user_data():
             elif data == "2":
                 print(languages)
             elif data == "3":
-                print("Answer 3")
+                print(developers)
             elif data == "0":
                 break
 
@@ -97,6 +98,40 @@ def common_language():
         language_percent = round(language_percent)
         output = output + f'{key}: {language_percent}%\n'
 
+    return output
+
+
+def developer_types():
+    """
+    Load in CSV file, open it, and read it.
+    Run a for loop to access "DevType" column data and loop over that
+    information to access all of the developer's types. Run a for loop
+    to see the five most common languages that specific developer type
+    working with and calculate the percentage for each one of these languages.
+    """
+    with open('survey_results_public.csv') as file:
+        csv_reader = csv.DictReader(file)
+
+        dev_type_info = {}
+        for line in csv_reader:
+            dev_types = line['DevType'].split(";")
+            for dev_type in dev_types:
+                dev_type_info.setdefault(dev_type, {
+                    'total': 0,
+                    'language_counter': Counter()
+                })
+                languages = line['LanguageHaveWorkedWith'].split(";")
+                dev_type_info[dev_type]['language_counter'].update(languages)
+                dev_type_info[dev_type]['total'] += 1
+    output = ""
+    for dev_type, info in dev_type_info.items():
+        output = output + "\n" + dev_type
+        for language, value in info['language_counter'].most_common(5):
+            language_percent = (value / info['total']) * 100
+            language_percent = round(language_percent)
+            developers = f'\t{language}: {language_percent}%'
+
+            output = output + "\n" + developers
     return output
 
 
