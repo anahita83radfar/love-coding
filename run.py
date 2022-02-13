@@ -25,11 +25,15 @@ def get_user_data():
     print('Enter "0" to exit\n')
 
     while True:
+        try:
+            data = input("Enter here:\n")
 
-        data = input("Enter here:\n")
-
-        if data not in ["0", "1", "2", "3"]:
+            if data not in ["0", "1", "2", "3"]:
+                print("Invalid data, Please try again.")
+                continue
+        except EOFError:
             print("Invalid data, Please try again.")
+            continue
         else:
             if data == "1":
                 print(gender)
@@ -48,6 +52,7 @@ def gender_analyse():
     answers. Calculate that information to see what percentage of people
     answered this developer survey are males and what percentage are females.
     """
+    # The code taken from the Specific YouTube Tutorial
     with open('survey_results_public.csv') as file:
         csv_reader = csv.DictReader(file)
 
@@ -81,6 +86,7 @@ def common_language():
     most common languages developers currently working with
     and calculate the percentage for each one of these languages.
     """
+    # The code taken from the Specific YouTube Tutorial
     with open('survey_results_public.csv') as file:
         csv_reader = csv.DictReader(file)
         total = 0
@@ -110,6 +116,7 @@ def developer_types():
     to see the five most common languages that specific developer type
     working with and calculate the percentage for each one of these languages.
     """
+    # The code taken from the Specific YouTube Tutorial
     with open('survey_results_public.csv') as file:
         csv_reader = csv.DictReader(file)
 
