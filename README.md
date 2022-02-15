@@ -33,7 +33,7 @@ In this application, the user is going to receive a list of questions by running
 
    ![Diagram](/images/diagram.jpg)
 
-   I decided to use several different functions as my model. The first function `get_user_data()`, get figures input from the user to collect a valid string of data from the user via the terminal, which must be a string of one of the listed numbers. It will repeatedly request data, until it is valid and print out the result by the print method. 
+  I decided to use some libraries and functions as my model. For the implementation of the project, I used the csv module for reading and writing data in CSV format, and the collections module to access the `Counter()` function to count objects in an iterable. The first function `get_user_data()`, get figures input from the user to collect a valid string of data from the user via the terminal, which must be a string of one of the listed numbers. It will repeatedly request data, until it is valid and print out the result by the print method.
    
    The second function `gender_analyse()`, the third function `common_language()`, and the fourth function `developer_types()`, load in CSV file, get a specific column data such as "Gender", "LanguageHaveWorkedWith" and "DevType" from the "survey_results_public.csv" file and parse that information out of the data. These functions count and calculate that information so that to see, what percentage of people who answered this developer survey are male and what percentage is female, which are the five most common languages developers currently working with and which are the most common languages among developers types. 
    
