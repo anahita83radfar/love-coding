@@ -4,7 +4,7 @@ Love coding is a Python terminal application, which runs in the Code Institute m
 The application makes it possible that the user to glean insights from the 2021 Stack Overflow Developer Survey results.
 The application goal is that the user can be able to pull out the information that she/he is looking for from an inputted dataset.
 
-[Here is the live version of my project](https://love-coding.herokuapp.com/)
+[Here is the live version of my project](https://love-coding.onrender.com)
 
 ![Responsive page](/images/responsive.jpg)
 
